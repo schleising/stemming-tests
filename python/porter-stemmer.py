@@ -439,5 +439,22 @@ if __name__ == "__main__":
                         break
                     print(f"{line:15}: {p.stem(line, 0, len(line) - 1)}")
     else:
-        print("Usage: python porter-stemmer.py file1 [file2 ...]")
-        sys.exit(1)
+        with (
+            open("input.txt", "r") as infile1,
+            open("output.txt", "r") as infile2
+        ):
+
+            # Read the input files into a pair of lists
+            inputs = infile1.readlines()
+            outputs = infile2.readlines()
+
+            # Check if the input and output files have the same number of lines
+            if len(inputs) != len(outputs):
+                print("Error: The input and output files have different number of lines")
+                sys.exit()
+
+            # Check if the output is correct
+            for i, input in enumerate(inputs):
+                if p.stem(input.strip(), 0, len(input.strip()) - 1) != outputs[i].strip():
+                    print(f"Error: The output for '{input.strip()}' is incorrect: {p.stem(input.strip(), 0, len(input.strip()) - 1)} should be {outputs[i].strip()}")
+                    sys.exit()
