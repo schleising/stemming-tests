@@ -186,6 +186,7 @@ class PorterStemmer:
             if self.ends("at"):   self.setto("ate")
             elif self.ends("bl"): self.setto("ble")
             elif self.ends("iz"): self.setto("ize")
+            elif self.ends("is"): self.setto("ise")
             elif self.doublec(self.k):
                 self.k = self.k - 1
                 ch = self.b[self.k]
@@ -212,6 +213,7 @@ class PorterStemmer:
             elif self.ends("anci"):    self.r("ance")
         elif self.b[self.k - 1] == 'e':
             if self.ends("izer"):      self.r("ize")
+            elif self.ends("iser"):      self.r("ise")
         elif self.b[self.k - 1] == 'l':
             if self.ends("bli"):       self.r("ble") # --DEPARTURE--
             # To match the published algorithm, replace this phrase with
@@ -222,6 +224,7 @@ class PorterStemmer:
             elif self.ends("ousli"):   self.r("ous")
         elif self.b[self.k - 1] == 'o':
             if self.ends("ization"):   self.r("ize")
+            elif self.ends("isation"):   self.r("ise")
             elif self.ends("ation"):   self.r("ate")
             elif self.ends("ator"):    self.r("ate")
         elif self.b[self.k - 1] == 's':
@@ -243,6 +246,7 @@ class PorterStemmer:
             if self.ends("icate"):     self.r("ic")
             elif self.ends("ative"):   self.r("")
             elif self.ends("alize"):   self.r("al")
+            elif self.ends("alise"):   self.r("al")
         elif self.b[self.k] == 'i':
             if self.ends("iciti"):     self.r("ic")
         elif self.b[self.k] == 'l':
@@ -296,6 +300,7 @@ class PorterStemmer:
             else: return
         elif self.b[self.k - 1] == 'z':
             if self.ends("ize"): pass
+            elif self.ends("ise"): pass
             else: return
         else:
             return
