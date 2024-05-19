@@ -355,19 +355,10 @@ if __name__ == '__main__':
         for f in sys.argv[1:]:
             with open(f, 'r') as infile:
                 while True:
-                    output = ''
-                    input = ''
-                    word = ''
-                    line = infile.readline()
-                    if line == '':
+                    line = infile.readline().strip()
+                    if not line:
                         break
-                    for c in line:
-                        if c.isalpha():
-                            word += c.lower()
-                        else:
-                            if word:
-                                output += p.stem(word, 0,len(word)-1)
-                                input = word
-                                word = ''
-                            output += c.lower()
-                    print(f'{input:15}: {output.strip()}')
+                    print(f"{line:15}: {p.stem(line, 0, len(line) - 1)}")
+    else:
+        print("Usage: python porter-stemmer.py file1 [file2 ...]")
+        sys.exit(1)
