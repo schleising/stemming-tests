@@ -307,7 +307,7 @@ class PorterStemmer:
         if self.m() > 1:
             self.k = self.j
 
-    def step5(self):
+    def step5(self) -> None:
         """step5() removes a final -e if m() > 1, and changes -ll to -l if
         m() > 1.
         """
